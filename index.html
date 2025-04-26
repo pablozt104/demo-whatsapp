@@ -2,25 +2,56 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Demo WhatsApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón de WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            background-color: #25d366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #128c7e;
+        }
+    </style>
 </head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M83R7NR7');</script>
-<!-- End Google Tag Manager -->
 <body>
 
-    <h1>Prueba de clic en botón de WhatsApp</h1>
+    <h1>¡Chatea con nosotros en WhatsApp!</h1>
+    
+    <!-- Enlace al botón de WhatsApp -->
     <a href="https://wa.me/5491123456789" target="_blank">
         <button>¡Chatear con nosotros en WhatsApp!</button>
     </a>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){
+            w[l]=w[l]||[]; 
+            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'}); 
+            var f=d.getElementsByTagName(s)[0], 
+            j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:''; 
+            j.async=true; 
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; 
+            f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-M83R7NR7');
+    </script>
+    <!-- Fin de Google Tag Manager -->
 
 </body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M83R7NR7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<!-- Fin de Google Tag Manager (noscript) -->
+
 </html>
