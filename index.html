@@ -1,57 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botón de WhatsApp</title>
+    <title>WhatsApp Button</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        button {
-            background-color: #25d366;
+        .whatsapp-button {
+            background-color: #25D366;
             color: white;
             padding: 15px 30px;
             border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            border-radius: 50px;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 100px;
+            transition: background-color 0.3s ease;
         }
-        button:hover {
-            background-color: #128c7e;
+        .whatsapp-button:hover {
+            background-color: #1ebe5d;
         }
     </style>
 </head>
-<body>
+<body style="text-align: center;">
 
-    <h1>¡Chatea con nosotros en WhatsApp!</h1>
-    
-    <!-- Enlace al botón de WhatsApp -->
-    <a href="https://wa.me/5491123456789" target="_blank">
-        <button>¡Chatear con nosotros en WhatsApp!</button>
+    <a 
+        href="https://wa.me/5491158292886?text=Hello%20I%20am%20interested%20in%20your%20tours" 
+        class="whatsapp-button" 
+        id="whatsapp-button" 
+        target="_blank">
+        Chat with us on WhatsApp
     </a>
 
-    <!-- Google Tag Manager -->
     <script>
-        (function(w,d,s,l,i){
-            w[l]=w[l]||[]; 
-            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'}); 
-            var f=d.getElementsByTagName(s)[0], 
-            j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:''; 
-            j.async=true; 
-            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; 
-            f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-M83R7NR7');
+        document.getElementById('whatsapp-button').addEventListener('click', function() {
+            console.log('WhatsApp button clicked');
+        });
     </script>
-    <!-- Fin de Google Tag Manager -->
 
 </body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M83R7NR7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- Fin de Google Tag Manager (noscript) -->
-
 </html>
