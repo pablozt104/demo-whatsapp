@@ -4,11 +4,11 @@
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-M83R7NR7');</script>
   <!-- End Google Tag Manager -->
-
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact Us</title>
@@ -83,9 +83,57 @@
       background-color: #45a049;
     }
 
+    #thank-you-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+
     iframe {
       margin-top: 20px;
       margin-bottom: 40px;
+    }
+
+    .contact-info {
+      margin-top: 20px;
+    }
+
+    .contact-info a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    /* New Styles for Short Form */
+    .short-form-container {
+      background-color: #e9f7e9;
+      padding: 20px;
+      margin-top: 30px;
+      max-width: 350px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      position: absolute;
+      right: 20px;
+      top: 120px;
+      text-align: left;
+    }
+
+    .short-form-container input, .short-form-container button {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .short-form-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .short-form-container button:hover {
+      background-color: #45a049;
     }
 
   </style>
@@ -116,85 +164,45 @@
       Chat with us on WhatsApp
     </a>
 
+    <!-- Telephone and Email Information -->
+    <div class="contact-info">
+      <p><strong>Telephone:</strong> <a href="tel:+5491158292886">+54 9 11 5829-2886</a></p>
+      <p><strong>Email:</strong> <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </div>
+
+    <!-- Main Contact Form -->
     <form id="contact-form">
       <input type="text" id="name" name="name" placeholder="Your name" required>
       <input type="email" id="email" name="email" placeholder="Your email" required>
       <textarea id="message" name="message" placeholder="Write something..." rows="5" required></textarea>
       <button type="submit" id="submit-button">Send Message</button>
     </form>
+
+    <!-- Smaller Form with Thank You Message -->
+    <div class="short-form-container">
+      <form id="small-form">
+        <input type="text" id="small-name" name="small-name" placeholder="Your name" required>
+        <input type="email" id="small-email" name="small-email" placeholder="Your email" required>
+        <button type="submit" id="small-submit">Submit</button>
+      </form>
+      <p id="thank-you-message">Thank you for your message! We'll get back to you shortly.</p>
+    </div>
   </div>
 
   <script>
-    // Ensure dataLayer is initialized
-    window.dataLayer = window.dataLayer || [];
-
-    // YouTube API Tracking
-    var player;
-    
-    // Create YouTube Player after the page loads
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('video-iframe', {
-        events: {
-          'onStateChange': onPlayerStateChange,
-          'onPlaybackQualityChange': onPlayerQualityChange
-        }
-      });
-    }
-
-    // YouTube Player state change handler
-    function onPlayerStateChange(event) {
-      switch (event.data) {
-        case YT.PlayerState.PLAYING:
-          window.dataLayer.push({
-            event: 'youtube_video_play',
-            videoTitle: 'k1uhH-6ZCaY',
-            videoState: 'playing'
-          });
-          break;
-        case YT.PlayerState.PAUSED:
-          window.dataLayer.push({
-            event: 'youtube_video_pause',
-            videoTitle: 'k1uhH-6ZCaY',
-            videoState: 'paused'
-          });
-          break;
-        case YT.PlayerState.ENDED:
-          window.dataLayer.push({
-            event: 'youtube_video_end',
-            videoTitle: 'k1uhH-6ZCaY',
-            videoState: 'ended'
-          });
-          break;
-      }
-    }
-
-    // Track playback quality change
-    function onPlayerQualityChange(event) {
-      window.dataLayer.push({
-        event: 'youtube_video_quality_change',
-        quality: event.data
-      });
-    }
-
-    // Add YouTube API script
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // Form submission tracking
+    // Form submission tracking (for the larger form)
     document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // stop actual form submission (for testing)
-      
-      // In real world, here you'd send form data with fetch(), AJAX, etc.
+      event.preventDefault(); // Prevent the actual form submission (for testing)
+      window.location.href = 'thankyou.html'; // Redirect to a thank-you page
+    });
 
-      window.location.href = 'thankyou.html';
+    // Smaller form submission (without redirection)
+    document.getElementById('small-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the actual form submission
 
-      // For GTM: simulate a form submit event
-      window.dataLayer.push({
-        event: 'form_submission',
-        formName: 'Contact Form'
-      });
+      // Hide the form and show the thank you message
+      document.getElementById('small-form').style.display = 'none';
+      document.getElementById('thank-you-message').style.display = 'block';
     });
   </script>
 
