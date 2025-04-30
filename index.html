@@ -100,9 +100,9 @@
   <div class="container">
     <h1>Contact Us</h1>
 
-    <!-- Embed YouTube Video -->
-    <iframe width="560" height="315" 
-      src="https://www.youtube.com/embed/k1uhH-6ZCaY" 
+    <!-- Embed YouTube Video with API setup -->
+    <iframe id="video-iframe" width="560" height="315" 
+      src="https://www.youtube.com/embed/k1uhH-6ZCaY?enablejsapi=1" 
       frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen></iframe>
     
@@ -125,13 +125,64 @@
   </div>
 
   <script>
-    // GTM Tracking for YouTube Video (using the YouTube trigger from GTM)
+    // Ensure dataLayer is initialized
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'youtube_video_play',
-      videoTitle: 'k1uhH-6ZCaY' // You can replace this with the actual video title if needed
-    });
 
+    // YouTube API Tracking
+    var player;
+    
+    // Create YouTube Player after the page loads
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('video-iframe', {
+        events: {
+          'onStateChange': onPlayerStateChange,
+          'onPlaybackQualityChange': onPlayerQualityChange
+        }
+      });
+    }
+
+    // YouTube Player state change handler
+    function onPlayerStateChange(event) {
+      switch (event.data) {
+        case YT.PlayerState.PLAYING:
+          window.dataLayer.push({
+            event: 'youtube_video_play',
+            videoTitle: 'k1uhH-6ZCaY',
+            videoState: 'playing'
+          });
+          break;
+        case YT.PlayerState.PAUSED:
+          window.dataLayer.push({
+            event: 'youtube_video_pause',
+            videoTitle: 'k1uhH-6ZCaY',
+            videoState: 'paused'
+          });
+          break;
+        case YT.PlayerState.ENDED:
+          window.dataLayer.push({
+            event: 'youtube_video_end',
+            videoTitle: 'k1uhH-6ZCaY',
+            videoState: 'ended'
+          });
+          break;
+      }
+    }
+
+    // Track playback quality change
+    function onPlayerQualityChange(event) {
+      window.dataLayer.push({
+        event: 'youtube_video_quality_change',
+        quality: event.data
+      });
+    }
+
+    // Add YouTube API script
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Form submission tracking
     document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault(); // stop actual form submission (for testing)
       
@@ -140,7 +191,6 @@
       window.location.href = 'thankyou.html';
 
       // For GTM: simulate a form submit event
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'form_submission',
         formName: 'Contact Form'
